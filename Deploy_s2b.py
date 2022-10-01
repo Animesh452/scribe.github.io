@@ -426,8 +426,8 @@ elif app_mode == 'Speech To Braille':
                 input("Press Enter to exit...")
                 quit()  # If file_title.txt has invalid char, exit program
 
-        if not os.path.isdir("./output"):  # If output folder doesn't exist, make one
-            os.mkdir("./output")
+        if not os.path.isdir("./"):  # If output folder doesn't exist, make one
+            os.mkdir("./")
         paper = Paper(paper_name)
         print("=" * 25 + "\nWorking...")
         paper.drawSentence(paper.convertBrailleCharacter(text))
