@@ -222,7 +222,7 @@ class Paper:
     def show(self):
         """Opens the image in whatever is your system default, doesn't require saving"""
 
-        self.image.show()
+        st.self.image(image, use_column_width=True)
 
     def drawChar(self, char, x, y, color=FONT_COLOR):
         """Takes a Character object and draws it on the image at the given coordinates using parameters inside the
