@@ -300,7 +300,7 @@ class Paper:
                 next_page.drawSentence(braille_code[n:], x, y, wrap_width, x_spacing, y_spacing, color)
                 break
 
-        self.show()
+        st.image(image, use_column_width=True)
 
 def getInput(file):  # To open the file
     input_text = open(file, "r")
