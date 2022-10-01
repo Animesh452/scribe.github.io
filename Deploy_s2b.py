@@ -19,14 +19,14 @@ from collections.abc import MutableMapping
 import time
 from pydub import AudioSegment
 import sys
-import firebase_admin
-from firebase_admin import credentials, storage
+#import firebase_admin
+#from firebase_admin import credentials, storage
 
-cred=credentials.Certificate("key.json")
-app=firebase_admin.initialize_app(cred, {'storageBucket' : 'https://scribe-1b189-default-rtdb.firebaseio.com/'})
+#cred=credentials.Certificate("key.json")
+#app=firebase_admin.initialize_app(cred, {'storageBucket' : 'https://scribe-1b189-default-rtdb.firebaseio.com/'})
 
-bucket=storage.bucket()
-image_url = sys.argv[1]
+#bucket=storage.bucket()
+#image_url = sys.argv[1]
 
 API_KEY_ASSEMBLYAI = '31d08ebfe16243d1b87ae65e76d2d95c' #API key provided by AssemblyAI for access
 
