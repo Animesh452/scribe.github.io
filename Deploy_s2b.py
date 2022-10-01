@@ -300,7 +300,7 @@ class Paper:
                 next_page.drawSentence(braille_code[n:], x, y, wrap_width, x_spacing, y_spacing, color)
                 break
 
-        self.save()
+        self.show()
 
 def getInput(file):  # To open the file
     input_text = open(file, "r")
@@ -432,17 +432,17 @@ elif app_mode == 'Speech To Braille':
         print("=" * 25 + "\nWorking...")
         paper.drawSentence(paper.convertBrailleCharacter(text))
         i=1
-        while True:
-            image='.\Demo pg'+str(i)+'.png'
+        #while True:
+        #    image='.\Demo pg'+str(i)+'.png'
             
-            st.subheader('Output Image '+str(i))
-            out_image=Image.open(image)
-            st.image(out_image, use_column_width=True)
-            i=i+1
-            try: 
-                Image.open('.\Demo pg'+str(i)+'.png')
-            except:            
-                break
+         #   st.subheader('Output Image '+str(i))
+          #  out_image=Image.open(image)
+         #   st.image(out_image, use_column_width=True)
+          #  i=i+1
+         #   try: 
+           #     Image.open('.\Demo pg'+str(i)+'.png')
+          #  except:            
+           #     break
         #storage.download("s2b.png", "demo.png")
     else:
         pass
