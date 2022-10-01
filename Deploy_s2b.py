@@ -216,14 +216,8 @@ class Paper:
     def save(self):
         """Saves the image to a physical file that is the name the object was created with"""
 
-        #self.image.save("./output/" + self.name + " pg" + str(self._page) + ".png")
-        image_data = requests.get(image_url).content
-        blob = bucket.blob('new_cool_image.png')
-        blob.upload_from_string(
-                image_data,
-                content_type='image/png'
-            )
-        print(blob.public_url)
+        self.image.save("./output/" + self.name + " pg" + str(self._page) + ".png")
+        
 
     def show(self):
         """Opens the image in whatever is your system default, doesn't require saving"""
