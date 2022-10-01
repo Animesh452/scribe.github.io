@@ -216,7 +216,7 @@ class Paper:
     def save(self):
         """Saves the image to a physical file that is the name the object was created with"""
 
-        self.image.save("./output/" + self.name + " pg" + str(self._page) + ".png")
+        self.image.save("./" + self.name + " pg" + str(self._page) + ".png")
         
 
     def show(self):
