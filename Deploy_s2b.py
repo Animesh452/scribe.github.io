@@ -432,17 +432,17 @@ elif app_mode == 'Speech To Braille':
         print("=" * 25 + "\nWorking...")
         paper.drawSentence(paper.convertBrailleCharacter(text))
         i=1
-        #while True:
-            #image='.\output\Demo pg'+str(i)+'.png'
+        while True:
+            image='.\Demo pg'+str(i)+'.png'
             
-            #st.subheader('Output Image '+str(i))
-            #out_image=Image.open(image)
-            #st.image(out_image, use_column_width=True)
-            #i=i+1
-            #try: 
-                #Image.open('.\output\Demo pg'+str(i)+'.png')
-            #except:            
-                #break
-        storage.download("s2b.png", "demo.png")
+            st.subheader('Output Image '+str(i))
+            out_image=Image.open(image)
+            st.image(out_image, use_column_width=True)
+            i=i+1
+            try: 
+                Image.open('.\Demo pg'+str(i)+'.png')
+            except:            
+                break
+        #storage.download("s2b.png", "demo.png")
     else:
         pass
