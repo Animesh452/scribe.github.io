@@ -19,14 +19,23 @@ from collections.abc import MutableMapping
 import time
 from pydub import AudioSegment
 import sys
-#import firebase_admin
-#from firebase_admin import credentials, storage
+import pyrebase
 
-#cred=credentials.Certificate("key.json")
-#app=firebase_admin.initialize_app(cred, {'storageBucket' : 'https://scribe-1b189-default-rtdb.firebaseio.com/'})
 
-#bucket=storage.bucket()
-#image_url = sys.argv[1]
+config = {
+    "apiKey": "AIzaSyCwM3CrN_wllsZ_V7ZlrrRS5oGS5B4quUM",
+    "authDomain": "scribe-1b189.firebaseapp.com",
+    "databaseURL": "https://scribe-1b189-default-rtdb.firebaseio.com",
+    "projectId": "scribe-1b189",
+    "storageBucket": "scribe-1b189.appspot.com",
+    "messagingSenderId": "524961665751",
+    "appId": "1:524961665751:web:dca3a32a7ce777fa175692"
+}
+
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
+
+
 
 API_KEY_ASSEMBLYAI = '31d08ebfe16243d1b87ae65e76d2d95c' #API key provided by AssemblyAI for access
 
@@ -216,13 +225,13 @@ class Paper:
     def save(self):
         """Saves the image to a physical file that is the name the object was created with"""
 
-        self.image.save("./" + self.name + " pg" + str(self._page) + ".png")
-        
+        #self.image.save("./output/" + self.name + " pg" + str(self._page) + ".png")
+        storage.child(self.name + " pg" + str(self._page) + ".png").put(self.name + " pg" + str(self._page) + ".png")
 
     def show(self):
         """Opens the image in whatever is your system default, doesn't require saving"""
 
-        self.st.image(image, use_column_width=True)
+        self.image.show()
 
     def drawChar(self, char, x, y, color=FONT_COLOR):
         """Takes a Character object and draws it on the image at the given coordinates using parameters inside the
@@ -300,7 +309,7 @@ class Paper:
                 next_page.drawSentence(braille_code[n:], x, y, wrap_width, x_spacing, y_spacing, color)
                 break
 
-        st.image(image, use_column_width=True)
+        self.save()
 
 def getInput(file):  # To open the file
     input_text = open(file, "r")
@@ -426,23 +435,22 @@ elif app_mode == 'Speech To Braille':
                 input("Press Enter to exit...")
                 quit()  # If file_title.txt has invalid char, exit program
 
-        if not os.path.isdir("./"):  # If output folder doesn't exist, make one
-            os.mkdir("./")
+        if not os.path.isdir("./output"):  # If output folder doesn't exist, make one
+            os.mkdir("./output")
         paper = Paper(paper_name)
         print("=" * 25 + "\nWorking...")
         paper.drawSentence(paper.convertBrailleCharacter(text))
         i=1
         #while True:
-        #    image='.\Demo pg'+str(i)+'.png'
+            #image='.\output\Demo pg'+str(i)+'.png'
             
-         #   st.subheader('Output Image '+str(i))
-          #  out_image=Image.open(image)
-         #   st.image(out_image, use_column_width=True)
-          #  i=i+1
-         #   try: 
-           #     Image.open('.\Demo pg'+str(i)+'.png')
-          #  except:            
-           #     break
-        #storage.download("s2b.png", "demo.png")
+            #st.subheader('Output Image '+str(i))
+            #out_image=Image.open(image)
+            #st.image(out_image, use_column_width=True)
+            #i=i+1
+            #try: 
+                #Image.open('.\output\Demo pg'+str(i)+'.png')
+            #except:            
+                #break
     else:
         pass
