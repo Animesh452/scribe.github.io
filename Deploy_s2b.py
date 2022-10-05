@@ -34,7 +34,8 @@ config = {
 
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
-
+auth = firebase.auth()
+user = auth.sign_in_with_email_and_password("animeshk452@gmail.com", "012345#jhoN")
 
 
 API_KEY_ASSEMBLYAI = '31d08ebfe16243d1b87ae65e76d2d95c' #API key provided by AssemblyAI for access
@@ -226,7 +227,12 @@ class Paper:
         """Saves the image to a physical file that is the name the object was created with"""
 
         #self.image.save("./output/" + self.name + " pg" + str(self._page) + ".png")
-        storage.child(self.name + " pg" + str(self._page) + ".png").put(self.name + " pg" + str(self._page) + ".png")
+
+        img=self.name + " pg" + str(self._page) + ".png"
+        storage.child(img).put(img)
+        imgUrl = storage.child(img).get_url(user['idToken'])
+        st.write(imgUrl)
+
 
     def show(self):
         """Opens the image in whatever is your system default, doesn't require saving"""
