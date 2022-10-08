@@ -230,8 +230,9 @@ class Paper:
 
         img=self.name + " pg" + str(self._page) + ".png"
         storage.child(img).put(img)
-#         imgUrl = storage.child(img).get_url(user['idToken'])
-#         st.write(imgUrl)
+        imgUrl = storage.child(img).get_url(user['idToken'])
+        st.image(imgUrl)
+        #print(imgUrl)
 
 
     def show(self):
@@ -441,7 +442,8 @@ elif app_mode == 'Speech To Braille':
                 input("Press Enter to exit...")
                 quit()  # If file_title.txt has invalid char, exit program
 
-
+        if not os.path.isdir("./output"):  # If output folder doesn't exist, make one
+            os.mkdir("./output")
         paper = Paper(paper_name)
         print("=" * 25 + "\nWorking...")
         paper.drawSentence(paper.convertBrailleCharacter(text))
